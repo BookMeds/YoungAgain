@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +20,6 @@ public class ChatActivity extends AppCompatActivity {
     private GridView chatMenuList;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference();
-
 
 
     @Override
@@ -40,11 +38,14 @@ public class ChatActivity extends AppCompatActivity {
         chatItems.add(new MenuItem(R.drawable.join_group, "Join Group", "Join a already existing group"));
         chatItems.add(new MenuItem(R.drawable.create_group, "Create Group", "Create a new group"));
 
+        final menuAdapter adapter = new menuAdapter(this, chatItems);
+
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String value = dataSnapshot.child(s).getValue(String.class);
                 chatItems.add(new MenuItem(R.drawable.innergroupicon, value, ""));
+                adapter.notifyDataSetChanged();
             }
 
 
@@ -69,8 +70,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        menuAdapter adapter = new menuAdapter(this, chatItems);
-
         chatMenuList.setAdapter(adapter);
 
         chatMenuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,6 +77,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
+                        startActivity(new Intent(ChatActivity.this, JoinGroupActivity.class));
                         break;
                     case 1:
                         int groupCode = (int) (Math.random() * 10000);
@@ -95,6 +95,12 @@ public class ChatActivity extends AppCompatActivity {
                         }
                         break;
                     default:
+                        String existingGroupCode = adapter.getItem(position).getName();
+                        Bundle extras = new Bundle();
+                        extras.putString(getString(R.string.groups), existingGroupCode);
+                        Intent intent = new Intent(ChatActivity.this, ChatScreenActivity.class);
+                        intent.putExtras(extras);
+                        startActivity(intent);
                 }
             }
         });

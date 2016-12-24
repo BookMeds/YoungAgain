@@ -78,7 +78,7 @@ public class ChatScreenActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         String message = messageBox.getText().toString().trim();
         if (message.length() > 0) {
-            myRef.child(messageNo + "").setValue(message);
+            myRef.child(messageNo + "").setValue(Userdetails.name + ": " + message);
             messageNo++;
             messageBox.setText("");
         }
