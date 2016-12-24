@@ -23,12 +23,15 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name" />
 
-    <EditText
+    <android.support.design.widget.TextInputEditText
         android:id="@+id/Phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:hint="Phone Number" />
+        android:hint="Phone Number">
+
+    </android.support.design.widget.TextInputEditText>
+
 
     <Button
         style="@style/Base.Widget.AppCompat.Button.Colored"
