@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login_acitvity"
+    android:id="@+id/activity_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -10,30 +10,24 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.bookmeds.youngagain.LoginAcitvity">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo1" />
-
-    <TextView
-        style="@style/TextAppearance.AppCompat.Display2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name" />
+    tools:context="com.bookmeds.youngagain.DetailActivity">
 
     <EditText
-        android:id="@+id/Phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:hint="Phone Number" />
+        android:hint="NAME"
+        android:inputType="textPersonName" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Age"
+        android:inputType="number" />
     <Button
-        style="@style/Base.Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="Login"
-        android:text="Next" />
+        android:onClick="PICKPLACE"
+        android:text="GET LOCATION"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
 </LinearLayout>
