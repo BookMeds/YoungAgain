@@ -1,5 +1,6 @@
 package com.bookmeds.youngagain;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ public class LoginAcitvity extends AppCompatActivity {
 
     public void Login(View view) {
         String phone = Phone.getText().toString().trim();
-
+        startActivity(new Intent(this, DetailActivity.class));
+        finish();
     }
 }
