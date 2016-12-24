@@ -41,6 +41,7 @@ public class MenuActivity extends AppCompatActivity {
                     case 2:
                         break;
                     case 3:
+                        startActivity(new Intent(MenuActivity.this,ChatActivity.class));
                         break;
                     case 4:
                         break;
