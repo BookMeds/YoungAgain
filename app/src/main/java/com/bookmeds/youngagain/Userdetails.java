@@ -7,4 +7,5 @@ package com.bookmeds.youngagain;
 public class Userdetails {
     static String phoneno;
     static String name;
+    static String UID;
 }

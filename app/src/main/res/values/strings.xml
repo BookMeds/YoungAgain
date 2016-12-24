@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">YoungAgain</string>
-    <string name="users">USERS</string>
-    <string name="name">Name</string>
-    <string name="phone">Phone</string>
-    <string name="groups">Groups</string>
-    <string name="chats">Chats</string>
+    <string name="users">user</string>
+    <string name="name">name</string>
+    <string name="phone">phone</string>
+    <string name="groups">groups</string>
+    <string name="chats">chats</string>
+    <string name="loading_please_wait">Loading, Please Wait...</string>
 </resources>

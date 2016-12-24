@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity {
 
-
     private GridView chatMenuList;
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference();
+
 
 
     @Override
@@ -28,9 +29,8 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        database = FirebaseDatabase.getInstance();
         myRef = database.getReference(getString(R.string.users) + '/' +
-                Userdetails.phoneno + '/' +
+                Userdetails.UID + '/' +
                 getString(R.string.groups));
 
 
@@ -78,16 +78,21 @@ public class ChatActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        int A = (int) Math.random() * 100000;
-                        myRef.child(getString(R.string.users)).child(Userdetails.phoneno).child(getString(R.string.groups)).child(A + "").setValue(A + "");
-                        Bundle bundle = new Bundle();
-                        bundle.putString(getString(R.string.groups), A + "");
-                        Intent intent = new Intent(ChatActivity.this, ChatScreenActivity.class);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-
                         break;
                     case 1:
+                        int groupCode = (int) (Math.random() * 10000);
+                        if (myRef.child(getString(R.string.users))
+                                .child(Userdetails.UID)
+                                .child(getString(R.string.groups))
+                                .child(getString(R.string.groups) + groupCode)
+                                .setValue(getString(R.string.groups) + groupCode).isComplete()) {
+
+                            Bundle extras = new Bundle();
+                            extras.putString(getString(R.string.groups), groupCode + "");
+                            Intent intent = new Intent(ChatActivity.this, ChatScreenActivity.class);
+                            intent.putExtras(extras);
+                            startActivity(intent);
+                        }
                         break;
                     default:
                 }
