@@ -19,7 +19,6 @@ public class FreeHealthCampActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_free_health_camp);
 
-
         freeHealthCampList = (GridView) findViewById(R.id.free_health_camp_list);
 
         final ArrayList<MenuItem> items = new ArrayList<>();

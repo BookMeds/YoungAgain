@@ -17,5 +17,6 @@
     <string name="map_location">location</string>
     <string name="map_lat">lat</string>
     <string name="map_long">lon</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

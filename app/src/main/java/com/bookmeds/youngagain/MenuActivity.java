@@ -46,6 +46,7 @@ public class MenuActivity extends AppCompatActivity {
                         startActivity(new Intent(MenuActivity.this, ChatActivity.class));
                         break;
                     case 4:
+                        startActivity(new Intent(MenuActivity.this, GatheringsActivity.class));
                         break;
                 }
             }
