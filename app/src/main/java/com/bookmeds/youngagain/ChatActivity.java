@@ -43,7 +43,7 @@ public class ChatActivity extends AppCompatActivity {
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String value = dataSnapshot.child(s).getValue(String.class);
+                String value = dataSnapshot.getValue(String.class);
                 chatItems.add(new MenuItem(R.drawable.innergroupicon, value, ""));
                 adapter.notifyDataSetChanged();
             }
@@ -81,10 +81,7 @@ public class ChatActivity extends AppCompatActivity {
                         break;
                     case 1:
                         int groupCode = (int) (Math.random() * 10000);
-                        if (myRef.child(getString(R.string.users))
-                                .child(Userdetails.UID)
-                                .child(getString(R.string.groups))
-                                .child(getString(R.string.groups) + groupCode)
+                        if (myRef.child(getString(R.string.groups) + groupCode)
                                 .setValue(getString(R.string.groups) + groupCode).isComplete()) {
 
                             Bundle extras = new Bundle();

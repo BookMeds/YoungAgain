@@ -18,13 +18,13 @@ public class MedicineListActivity extends AppCompatActivity {
         menuList = (GridView) findViewById(R.id.menulist);
 
         ArrayList<MenuItem> items = new ArrayList<>();
-        items.add(new MenuItem(R.drawable.Anacin, "Prescribed for headache and cold", "Quantity"));
+        items.add(new MenuItem(R.drawable.anacin, "Prescribed for headache and cold", "Quantity"));
         items.add(new MenuItem(R.drawable.crocin_advance_tablets, "prescribed for small pains ", "Quantity"));
-        items.add(new MenuItem(R.drawable.Saridon, "prescrbied for headache", "Quantity"));
+        items.add(new MenuItem(R.drawable.saridon, "prescrbied for headache", "Quantity"));
         items.add(new MenuItem(R.drawable.advin, "prescribed for body pains", "Quantity"));
-        items.add(new MenuItem(R.drawable.crocin_pain_relief_1433739634, "body pain relifs", "Quantity"));
+        items.add(new MenuItem(R.drawable.crocin_pain_relief_, "body pain relifs", "Quantity"));
         items.add(new MenuItem(R.drawable.moov_spery,"for injuries during playing","Quantity"));
-        items.add(new MenuItem(R.drawable.dcold_250x250, "prescribed for body pains and cold", "Quantity"));
+        items.add(new MenuItem(R.drawable.dcold, "prescribed for body pains and cold", "Quantity"));
         items.add(new MenuItem(R.drawable.sleeping, "you cannot buy this until you upload the Doctors prescription", ""));
         menuAdapter adapter = new menuAdapter(this, items);
         menuList.setAdapter(adapter);

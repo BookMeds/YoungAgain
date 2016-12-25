@@ -48,7 +48,7 @@ public class ChatScreenActivity extends AppCompatActivity {
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                messages.add(dataSnapshot.child(s).getValue(String.class));
+                messages.add(dataSnapshot.getValue(String.class));
                 adapter.notifyDataSetChanged();
                 messageNo++;
             }
