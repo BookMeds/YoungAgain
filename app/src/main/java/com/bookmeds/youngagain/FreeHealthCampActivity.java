@@ -1,5 +1,7 @@
 package com.bookmeds.youngagain;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,7 +22,7 @@ public class FreeHealthCampActivity extends AppCompatActivity {
 
         freeHealthCampList = (GridView) findViewById(R.id.free_health_camp_list);
 
-        ArrayList<MenuItem> items = new ArrayList<>();
+        final ArrayList<MenuItem> items = new ArrayList<>();
         items.add(new MenuItem(android.R.drawable.ic_dialog_map, "Free BP Check", "Chennai Jayanth Acupuncture Hospital, Anna Nagar, Chennai, Tamil Nadu, India", 13.095658, 80.206116));
         items.add(new MenuItem(android.R.drawable.ic_dialog_map, "Free Sugar Check", "Srinivas Priya Hospital Pvt Ltd, Patel Road, Perambur, Chennai, India", 13.109593, 80.246666));
         items.add(new MenuItem(android.R.drawable.ic_dialog_map, "Free Dental Check", "RELAX Hospital, Cuttack, Orrisa, Odisha, India", 20.457838, 85.871536));
@@ -33,6 +35,12 @@ public class FreeHealthCampActivity extends AppCompatActivity {
         freeHealthCampList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MenuItem item = items.get(position);
+
+                Uri gmmIntentUri = Uri.parse("google.navigation:q=" + item.getLat() + "," + item.getLon());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
 
             }
         });

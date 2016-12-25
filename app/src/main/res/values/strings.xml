@@ -13,4 +13,9 @@
     <string name="med_price">medPrice</string>
     <string name="med_restrict">medRestriction</string>
 
+    <string name="map_name">mapName</string>
+    <string name="map_location">location</string>
+    <string name="map_lat">lat</string>
+    <string name="map_long">lon</string>
+
 </resources>

@@ -26,7 +26,8 @@
         <activity android:name=".JoinGroupActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".ChatScreenActivity" />
-        <activity android:name=".FreeHealthCampActivity"></activity>
+        <activity android:name=".FreeHealthCampActivity" />
+        <activity android:name=".MapActivity"></activity>
     </application>
 
 </manifest>
