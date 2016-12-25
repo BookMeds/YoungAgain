@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -17,23 +18,30 @@ import java.util.ArrayList;
 
 public class ChatScreenActivity extends AppCompatActivity {
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    ListView chatmessagelist;
-    long messageno = 0;
-    DatabaseReference myRef;
-    EditText messagebox;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private ListView chatMessageList;
+    private long messageNo = 0;
+    private DatabaseReference myRef;
+    private TextView groupCodeTextView;
+    private EditText messageBox;
+    private ArrayList<String> messages;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_screen);
         Bundle extras = getIntent().getExtras();
-        messagebox = (EditText) findViewById(R.id.new_message);
         String groupCode = extras.getString(getString(R.string.groups));
-        chatmessagelist = (ListView) findViewById(R.id.chat_message_list);
-        final ArrayList messages = new ArrayList();
-        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, messages);
-        chatmessagelist.setAdapter(adapter);
+
+        messageBox = (EditText) findViewById(R.id.new_message);
+        chatMessageList = (ListView) findViewById(R.id.chat_message_list);
+        groupCodeTextView = (TextView) findViewById(R.id.group_code);
+        groupCodeTextView.setText("Group Code :" + groupCode);
+
+        messages = new ArrayList<>();
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, messages);
+        chatMessageList.setAdapter(adapter);
 
         myRef = database.getReference(getString(R.string.groups)).child(groupCode);
 
@@ -42,7 +50,7 @@ public class ChatScreenActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 messages.add(dataSnapshot.child(s).getValue(String.class));
                 adapter.notifyDataSetChanged();
-                messageno++;
+                messageNo++;
             }
 
             @Override
@@ -68,10 +76,11 @@ public class ChatScreenActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View view) {
-        String message = messagebox.getText().toString().trim();
+        String message = messageBox.getText().toString().trim();
         if (message.length() > 0) {
-            myRef.child(messageno + "").setValue(message);
-            messageno++;
+            myRef.child(messageNo + "").setValue(Userdetails.name + ": " + message);
+            messageNo++;
+            messageBox.setText("");
         }
     }
 }

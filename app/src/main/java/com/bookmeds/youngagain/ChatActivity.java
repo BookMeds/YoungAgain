@@ -17,10 +17,9 @@ import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity {
 
-
     private GridView chatMenuList;
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference();
 
 
     @Override
@@ -28,9 +27,8 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        database = FirebaseDatabase.getInstance();
         myRef = database.getReference(getString(R.string.users) + '/' +
-                Userdetails.phoneno + '/' +
+                Userdetails.UID + '/' +
                 getString(R.string.groups));
 
 
@@ -40,11 +38,14 @@ public class ChatActivity extends AppCompatActivity {
         chatItems.add(new MenuItem(R.drawable.join_group, "Join Group", "Join a already existing group"));
         chatItems.add(new MenuItem(R.drawable.create_group, "Create Group", "Create a new group"));
 
+        final menuAdapter adapter = new menuAdapter(this, chatItems);
+
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String value = dataSnapshot.child(s).getValue(String.class);
                 chatItems.add(new MenuItem(R.drawable.innergroupicon, value, ""));
+                adapter.notifyDataSetChanged();
             }
 
 
@@ -69,8 +70,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        menuAdapter adapter = new menuAdapter(this, chatItems);
-
         chatMenuList.setAdapter(adapter);
 
         chatMenuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,18 +77,30 @@ public class ChatActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        int A = (int) Math.random() * 100000;
-                        myRef.child(getString(R.string.users)).child(Userdetails.phoneno).child(getString(R.string.groups)).child(A + "").setValue(A + "");
-                        Bundle bundle = new Bundle();
-                        bundle.putString(getString(R.string.groups), A + "");
-                        Intent intent = new Intent(ChatActivity.this, ChatScreenActivity.class);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-
+                        startActivity(new Intent(ChatActivity.this, JoinGroupActivity.class));
                         break;
                     case 1:
+                        int groupCode = (int) (Math.random() * 10000);
+                        if (myRef.child(getString(R.string.users))
+                                .child(Userdetails.UID)
+                                .child(getString(R.string.groups))
+                                .child(getString(R.string.groups) + groupCode)
+                                .setValue(getString(R.string.groups) + groupCode).isComplete()) {
+
+                            Bundle extras = new Bundle();
+                            extras.putString(getString(R.string.groups), groupCode + "");
+                            Intent intent = new Intent(ChatActivity.this, ChatScreenActivity.class);
+                            intent.putExtras(extras);
+                            startActivity(intent);
+                        }
                         break;
                     default:
+                        String existingGroupCode = adapter.getItem(position).getName();
+                        Bundle extras = new Bundle();
+                        extras.putString(getString(R.string.groups), existingGroupCode);
+                        Intent intent = new Intent(ChatActivity.this, ChatScreenActivity.class);
+                        intent.putExtras(extras);
+                        startActivity(intent);
                 }
             }
         });
