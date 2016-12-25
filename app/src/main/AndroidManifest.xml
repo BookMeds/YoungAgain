@@ -21,6 +21,8 @@
         <activity android:name=".DetailActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".DailyRemainderActivity" />
+        <activity android:name=".MedicineListActivity"/>
+        <activity android:name=".OrderActivity"/>
         <activity android:name=".JoinGroupActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".ChatScreenActivity"></activity>

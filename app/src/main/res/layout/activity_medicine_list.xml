@@ -12,6 +12,7 @@
     <GridView
         android:id="@+id/medicine_list"
         android:layout_width="match_parent"
+        android:verticalSpacing="10dp"
         android:layout_height="match_parent"
         android:gravity="center"
         android:numColumns="1"
