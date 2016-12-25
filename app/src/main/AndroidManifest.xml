@@ -17,11 +17,8 @@
             android:value="AIzaSyD5Rxa7ypiJfpKgRlT_UyqUtRV99SaugSE" />
 
         <activity
-            android:name="com.bookmeds.youngagain.MapsActivity"
-            android:label="@string/title_activity_maps">
-
-        </activity>
-
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps" />
         <activity
             android:name=".SplashscreenActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -32,7 +29,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginAcitvity" />
-        <activity android:name=".DetailActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".DailyRemainderActivity" />
         <activity android:name=".MedicineListActivity" />
@@ -42,6 +38,8 @@
         <activity android:name=".ChatScreenActivity" />
         <activity android:name=".FreeHealthCampActivity" />
         <activity android:name=".GatheringsActivity" />
+        <activity android:name=".DietActivity" />
+        <activity android:name=".TimeTableActivity"></activity>
     </application>
 
 </manifest>

@@ -77,5 +77,5 @@ public class MedicineListActivity extends AppCompatActivity {
         });
     }
 
-    ;
+
 }
