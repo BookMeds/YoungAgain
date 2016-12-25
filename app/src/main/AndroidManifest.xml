@@ -22,7 +22,9 @@
         <activity android:name=".MenuActivity" />
         <activity android:name=".DailyRemainderActivity" />
         <activity android:name=".ChatActivity" />
-        <activity android:name=".ChatScreenActivity"></activity>
+        <activity android:name=".ChatScreenActivity" />
+        <activity android:name=".MedicineListActivity" />
+        <activity android:name=".ThanksActivity"></activity>
     </application>
 
 </manifest>

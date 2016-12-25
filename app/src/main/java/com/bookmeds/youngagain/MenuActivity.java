@@ -36,7 +36,7 @@ public class MenuActivity extends AppCompatActivity {
                     case 0:
                         startActivity(new Intent(MenuActivity.this, DailyRemainderActivity.class));
                         break;
-                    case 1:
+                    case 1:startActivity(new Intent(MenuActivity.this,MedicineListActivity.class));
                         break;
                     case 2:
                         break;
