@@ -5,7 +5,7 @@
     <string name="phone">phone</string>
     <string name="groups">groups</string>
     <string name="chats">chats</string>
-    <string name="loading_please_wait">Loading, Please Wait...</string>
+    <string name="loading_please_wait">Loading, Please Wait…</string>
 
     <string name="med_name">medName</string>
     <string name="med_desc">medDesc</string>
