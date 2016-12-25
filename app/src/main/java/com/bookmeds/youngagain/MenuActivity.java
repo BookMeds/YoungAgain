@@ -36,12 +36,14 @@ public class MenuActivity extends AppCompatActivity {
                     case 0:
                         startActivity(new Intent(MenuActivity.this, DailyRemainderActivity.class));
                         break;
-                    case 1:startActivity(new Intent(MenuActivity.this,MedicineListActivity.class));
+                    case 1:
+                        startActivity(new Intent(MenuActivity.this, MedicineListActivity.class));
                         break;
                     case 2:
+                        startActivity(new Intent(MenuActivity.this, FreeHealthCampActivity.class));
                         break;
                     case 3:
-                        startActivity(new Intent(MenuActivity.this,ChatActivity.class));
+                        startActivity(new Intent(MenuActivity.this, ChatActivity.class));
                         break;
                     case 4:
                         break;
