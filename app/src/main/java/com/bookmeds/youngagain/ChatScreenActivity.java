@@ -50,6 +50,7 @@ public class ChatScreenActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 messages.add(dataSnapshot.getValue(String.class));
                 adapter.notifyDataSetChanged();
+                chatMessageList.smoothScrollToPosition((int) messageNo);
                 messageNo++;
             }
 
@@ -79,7 +80,6 @@ public class ChatScreenActivity extends AppCompatActivity {
         String message = messageBox.getText().toString().trim();
         if (message.length() > 0) {
             myRef.child(messageNo + "").setValue(Userdetails.name + ": " + message);
-            messageNo++;
             messageBox.setText("");
         }
     }

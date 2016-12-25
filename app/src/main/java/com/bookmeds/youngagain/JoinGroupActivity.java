@@ -24,17 +24,17 @@ public class JoinGroupActivity extends AppCompatActivity {
     public void joinGroup(View view) {
         TextInputEditText groupCodeEditText = (TextInputEditText) findViewById(R.id.group_code_input);
         String groupCode = groupCodeEditText.getText().toString().trim();
-        if (myRef.child(getString(R.string.users))
+        myRef.child(getString(R.string.users))
                 .child(Userdetails.UID)
                 .child(getString(R.string.groups))
                 .child(getString(R.string.groups) + groupCode)
-                .setValue(getString(R.string.groups) + groupCode).isComplete()) {
+                .setValue(getString(R.string.groups) + groupCode);
 
-            Bundle extras = new Bundle();
-            extras.putString(getString(R.string.groups), groupCode + "");
-            Intent intent = new Intent(this, ChatScreenActivity.class);
-            intent.putExtras(extras);
-            startActivity(intent);
-        }
+        Bundle extras = new Bundle();
+        extras.putString(getString(R.string.groups), getString(R.string.groups)+groupCode + "");
+        Intent intent = new Intent(this, ChatScreenActivity.class);
+        intent.putExtras(extras);
+        startActivity(intent);
+
     }
 }
